@@ -8,21 +8,6 @@ import (
 	"fmt"
 )
 
-type TrieNode struct {
-
-	//子节点
-	ChildNodes map[int]*TrieNode
-
-	//词频统计
-	Freq int
-
-	//记录该节点的字符
-	NodeChar string
-
-	//插入记录时的编号id
-	HashSet *HashSet
-}
-
 type HashSet struct {
 	Set map[int]bool
 }
@@ -44,6 +29,21 @@ func (set *HashSet) Get(i int) bool {
 
 func (set *HashSet) Remove(i int) {
 	delete(set.Set, i)
+}
+
+type TrieNode struct {
+
+	//子节点
+	ChildNodes map[int]*TrieNode
+
+	//词频统计
+	Freq int
+
+	//记录该节点的字符
+	NodeChar string
+
+	//插入记录时的编号id
+	HashSet *HashSet
 }
 
 func (t * TrieNode) init() {
