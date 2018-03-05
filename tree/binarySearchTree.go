@@ -63,18 +63,18 @@ func (t *SearchTree) Add (k int) {
 	return
 }
 
-func (t *SearchTree) Remove(k int, parent *SearchTree) {
+func (t *SearchTree) Remove(k int) {
 	if t.Used == false {
 		return
 	}
 
 	if k < t.K {
 		if t.Left != nil {
-			t.Left.Remove(k, t)			
+			t.Left.Remove(k)			
 		}
 	} else {
 		if t.Right != nil {
-			t.Right.Remove(k, t)			
+			t.Right.Remove(k)			
 		}
 	}
 
@@ -82,16 +82,16 @@ func (t *SearchTree) Remove(k int, parent *SearchTree) {
 		if t.Left != nil && t.Right != nil {
 			//根据二叉树的中序遍历， 需要找到"右子树"的最小节点
 			fmt.Println(t.K)
-			rightMinK := t.FindMin(parent)
+			rightMinK := t.FindMin(t)
 
-			t.Remove(rightMinK, parent)
+			t.Remove(rightMinK)
 
 			t.K = rightMinK
 		} else {
 			if t.Left != nil {
-				parent.Left = t.Left
+				t = t.Left
 			} else {
-				parent.Right = t.Right
+				t = t.Right
 			}
 		}
 	}
@@ -146,7 +146,7 @@ func main () {
 		t.Add(v)
 	}
 
-	t.Remove(4, t)
+	t.Remove(4)
 
 	t.SearchRange(1, 11, h)
 
