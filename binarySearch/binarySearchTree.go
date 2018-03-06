@@ -148,7 +148,7 @@ func main () {
 
 	t.Remove(4)
 
-	t.SearchRange(1, 11, h)
+	t.SearchRange(1, 64, h)
 
 	fmt.Println(h)
 }
